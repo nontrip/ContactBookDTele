@@ -1,37 +1,21 @@
 let id=0;
 let ContactsLib;
+
 let update = function(){
-  $.ajax({
-      url: 'http://contactbookdt.azurewebsites.net/api/contact/',
-      type: 'GET',
-      data: JSON.stringify(data),
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      async: false,
-      success: function(msg) {
+    $.ajax({
+        method: "GET",
+        url: "http://contactbookdt.azurewebsites.net/api/contact/",
+        dataType: "json"
+    }).done(function(data){
         ContactsLib = data;
-        ContactsLib.forEach(function(item, i, arr){
-            if (id<item.id){
-                id = item.id;
-            }
-        });
-        id++;
-        ReactDOM.render(<ContactBlock contacts={ContactsLib}/>, document.getElementById('list'));
-      }
-  });
-}
-/*let update = function(){
-    $.getJSON('http://contactbookdt.azurewebsites.net/api/contact', function(data){
-            ContactsLib = data;
-            ContactsLib.forEach(function(item, i, arr){
+         ContactsLib.forEach(function(item, i, arr){
                 if (id<item.id){
                     id = item.id;
                 }
             });
-            id++;
-            ReactDOM.render(<ContactBlock contacts={ContactsLib}/>, document.getElementById('list'));
-});
-}*/
+        ReactDOM.render(<ContactBlock contacts={ContactsLib}/>, document.getElementById('list'));
+    });
+}
 
 update();
 
@@ -157,7 +141,7 @@ $('#plus').on('click', function(){
 
 $(document).on('click', '.delete', function(){
     let id = $(this).attr('id').split('_')[1];
-    let url_temp = 'https://contactbookdt.azurewebsites.net/api/contact/'+id;
+    let url_temp = 'http://contactbookdt.azurewebsites.net/api/contact/'+id;
     $.ajax({
        url: url_temp,
         type: 'DELETE',
@@ -180,7 +164,7 @@ $(document).on('click', '.add', function(){
     }
     id++
     $.ajax({
-        url: 'https://contactbookdt.azurewebsites.net/api/contact/',
+        url: 'http://contactbookdt.azurewebsites.net/api/contact/',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
