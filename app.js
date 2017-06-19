@@ -1,7 +1,27 @@
 let id=0;
 let ContactsLib;
 let update = function(){
-    $.getJSON('https://contactbookdt.azurewebsites.net/api/contact', function(data){
+  $.ajax({
+      url: 'http://contactbookdt.azurewebsites.net/api/contact/',
+      type: 'GET',
+      data: JSON.stringify(data),
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      async: false,
+      success: function(msg) {
+        ContactsLib = data;
+        ContactsLib.forEach(function(item, i, arr){
+            if (id<item.id){
+                id = item.id;
+            }
+        });
+        id++;
+        ReactDOM.render(<ContactBlock contacts={ContactsLib}/>, document.getElementById('list'));
+      }
+  });
+}
+l/*et update = function(){
+    $.getJSON('http://contactbookdt.azurewebsites.net/api/contact', function(data){
             ContactsLib = data;
             ContactsLib.forEach(function(item, i, arr){
                 if (id<item.id){
@@ -11,7 +31,7 @@ let update = function(){
             id++;
             ReactDOM.render(<ContactBlock contacts={ContactsLib}/>, document.getElementById('list'));
 });
-}
+}*/
 
 update();
 
