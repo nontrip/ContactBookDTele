@@ -1,7 +1,7 @@
 let id=0;
 let ContactsLib;
 let update = function(){
-    $.getJSON('http://contactbookdt.azurewebsites.net/api/contact', function(data){
+    $.getJSON('https://contactbookdt.azurewebsites.net/api/contact', function(data){
             ContactsLib = data;
             ContactsLib.forEach(function(item, i, arr){
                 if (id<item.id){
@@ -137,7 +137,7 @@ $('#plus').on('click', function(){
 
 $(document).on('click', '.delete', function(){
     let id = $(this).attr('id').split('_')[1];
-    let url_temp = 'http://contactbookdt.azurewebsites.net/api/contact/'+id;
+    let url_temp = 'https://contactbookdt.azurewebsites.net/api/contact/'+id;
     $.ajax({
        url: url_temp,
         type: 'DELETE',
@@ -160,7 +160,7 @@ $(document).on('click', '.add', function(){
     }
     id++
     $.ajax({
-        url: 'http://contactbookdt.azurewebsites.net/api/contact/',
+        url: 'https://contactbookdt.azurewebsites.net/api/contact/',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
