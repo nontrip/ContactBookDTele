@@ -20,7 +20,7 @@ let update = function(){
       }
   });
 }
-l/*et update = function(){
+/*let update = function(){
     $.getJSON('http://contactbookdt.azurewebsites.net/api/contact', function(data){
             ContactsLib = data;
             ContactsLib.forEach(function(item, i, arr){
