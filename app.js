@@ -4,7 +4,6 @@ let ContactsLib;
 $(document).ajaxSend(function(event, xhr, settings) {
     xhr.setRequestHeader("content-type", "application/json; charset=utf-8");
     xhr.setRequestHeader("access-control-allow-origin", "*");
-    xhr.setRequestHeader("Authorization", "Token 2f1dbef3943cab1ba0e7ccf5d4c0c20b1f85d89a");
 });
 
 let update = function(){
